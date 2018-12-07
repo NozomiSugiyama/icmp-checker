@@ -27,6 +27,8 @@ while(True):
                     sleep(.1)
                 sleep(1)
             sleep(5)
+        else:
+            sleep(5)
         errorCount = errorCount + 1
     else:
         errorCount = 0;
