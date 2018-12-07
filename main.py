@@ -19,7 +19,7 @@ while(True):
     result = is_connectable('8.8.8.8')
     print(count ,datetime.datetime.now(), count, ":", result)
     if not result:
-        if count > 3:
+        if errorCount > 3:
             for _ in range(3):
                 for _ in range(3):
                     p = subprocess.Popen(["ffplay", "-nodisp", "-autoexit", os.getcwd() + "/sound.mp3"], stdout = subprocess.DEVNULL, stderr = subprocess.DEVNULL)
