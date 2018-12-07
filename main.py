@@ -13,18 +13,22 @@ def is_connectable(host):
     return ping.returncode == 0
 
 count = 0;
+errorCount = 0;
 while(True):
-    count += 1;
+    count += 1
     result = is_connectable('8.8.8.8')
-    print(count ,datetime.datetime.now(), count, ":", result);
+    print(count ,datetime.datetime.now(), count, ":", result)
     if not result:
-        for _ in range(3):
+        if count > 3:
             for _ in range(3):
-                p = subprocess.Popen(["ffplay", "-nodisp", "-autoexit", os.getcwd() + "/sound.mp3"], stdout = subprocess.DEVNULL, stderr = subprocess.DEVNULL)
-                p.poll()
-                sleep(.1)
-            sleep(1)
-        sleep(5)
+                for _ in range(3):
+                    p = subprocess.Popen(["ffplay", "-nodisp", "-autoexit", os.getcwd() + "/sound.mp3"], stdout = subprocess.DEVNULL, stderr = subprocess.DEVNULL)
+                    p.poll()
+                    sleep(.1)
+                sleep(1)
+            sleep(5)
+        errorCount = errorCount + 1
     else:
+        errorCount = 0;
         sleep(10)
 
